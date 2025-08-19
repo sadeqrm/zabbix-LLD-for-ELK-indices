@@ -17,6 +17,7 @@
 
 ## 🔹 مرحله ۱ – اسکریپت کشف ایندکس‌ها
 ابتدا یک اسکریپت به نام /usr/local/bin/es_index_discovery.sh ایجاد کنید:
+حتما ES_host که همان سرور ElasticSearch شماست بهمراه نام کاربری و رمز عبور (ES_USER , ES_PASS) تغییر پیدا کند.
 ```bash
 #!/bin/bash
 
@@ -43,6 +44,7 @@ echo '] }'
 
 ## 🔹 مرحله ۲ – معرفی به Zabbix Agent
 فایل تنظیمات زیر را در مسیر /etc/zabbix/zabbix_agentd.d/elasticsearch.conf اضافه کنید:
+تنظیمات curl خودتان رو مطابق نام کاربری و رمز عبور ElasticSearch قرار دهید و از آدرس مربوط به سرورتان استفاده کنید.
 ```ini
 UserParameter=es.indices.discovery,/usr/local/bin/es_index_discovery.sh
 UserParameter=es.index.size[*],curl -s -u rakhshani:123456 "http://192.168.44.121:9200/_cat/indices/$1?h=store.size" | awk '{print $1}'
