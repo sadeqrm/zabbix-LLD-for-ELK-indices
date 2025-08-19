@@ -58,7 +58,7 @@ echo '] }'
   
 ```ini
 UserParameter=es.indices.discovery,/usr/local/bin/es_index_discovery.sh
-UserParameter=es.index.size[*],curl -s -u rakhshani:123456 "http://192.168.44.121:9200/_cat/indices/$1?h=store.size" | awk '{print $1}'
+UserParameter=es.index.size[*],curl -s -u rakhshani:123456 "http://192.168.44.121:9200/$1/_stats/store?filter_path=indices.*.total.store.size_in_bytes" | jq -r ".indices[] | .total.store.size_in_bytes"
 ```
 سپس ریستارت سرویس Zabbix Agent:
 ```bash
@@ -82,6 +82,9 @@ systemctl restart zabbix-agent
 - Units: B یا MB
 
 ---
+## خروجی 
+<img width="1680" height="453" alt="image" src="https://github.com/user-attachments/assets/20fd64b3-f111-4e0c-ab9c-592f2cd16d09" />
+
 
 ## 📌 نکات مهم
 - اطمینان حاصل کنید که کاربر ELK دسترسی خواندن روی _cat/indices داشته باشد.
