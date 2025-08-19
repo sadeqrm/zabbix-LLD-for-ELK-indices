@@ -53,9 +53,8 @@ echo '] }'
 فایل تنظیمات زیر را در مسیر /etc/zabbix/zabbix_agentd.d/elasticsearch.conf اضافه کنید:
 
 <div style="background-color:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:10px; border-radius:5px;">
-⚠️ <strong>هشدار:</strong><br>
-تنظیمات <code>curl</code> خودتان را مطابق نام کاربری و رمز عبور Elasticsearch و آدرس سرور خود قرار دهید.
-</div>
+> ⚠️ **هشدار مهم:**  
+> تنظیمات curl خودتان رو مطابق نام کاربری و رمز عبور ElasticSearch قرار دهید و از آدرس مربوط به سرورتان استفاده کنید.  
 ```ini
 UserParameter=es.indices.discovery,/usr/local/bin/es_index_discovery.sh
 UserParameter=es.index.size[*],curl -s -u rakhshani:123456 "http://192.168.44.121:9200/_cat/indices/$1?h=store.size" | awk '{print $1}'
